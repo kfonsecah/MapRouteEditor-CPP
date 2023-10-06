@@ -7,7 +7,7 @@ MapRouteEditor is an interactive mapping application that allows users to create
 
 ## 🚀 Features
 
-- **🗺️ Load Custom Map**: Users can initiate the application with a map of their choice.
+- **🗺️ Load Custom Map**
 - **✏️ Interactive Route Creation**: Users can craft routes with as many segments as needed, simply by clicking on the map.
 - **🔧 Route Management**:
   - Edit existing routes by selecting vertices.
