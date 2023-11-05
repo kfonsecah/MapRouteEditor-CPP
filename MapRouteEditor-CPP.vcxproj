@@ -119,15 +119,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ColorPalette.cpp" />
+    <ClCompile Include="src\DoubleLinkedList.cpp" />
+    <ClCompile Include="src\FileManger.cpp" />
+    <ClCompile Include="src\InputHandler.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Map.cpp" />
+    <ClCompile Include="src\MapDisplay.cpp" />
+    <ClCompile Include="src\Node.cpp" />
     <ClCompile Include="src\Route.cpp" />
+    <ClCompile Include="src\RouteManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header.h" />
     <ClInclude Include="include\CImg.h" />
-    <ClInclude Include="include\Map.h" />
+    <ClInclude Include="include\ColorPalette.h" />
+    <ClInclude Include="include\DoubleLinkedList.h" />
+    <ClInclude Include="include\FileManger.h" />
+    <ClInclude Include="include\InputHandler.h" />
+    <ClInclude Include="include\MapDisplay.h" />
+    <ClInclude Include="include\Node.h" />
     <ClInclude Include="include\Route.h" />
+    <ClInclude Include="include\RouteManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
