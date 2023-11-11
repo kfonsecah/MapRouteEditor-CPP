@@ -1,27 +1,16 @@
-#ifndef MAPDISPLAY_H
-#define MAPDISPLAY_H
+#pragma once
 
-#include "CImg.h"
-
-#define cimg_use_jpg
-
-#define MAP_IMAGE_PATH "./resources/Map.jpg"
-
-using namespace cimg_library;
-
-class DoublyLinkedList; 
+#include <SFML/Graphics.hpp>
+#include "DoubleLinkedList.h"
 
 class MapDisplay {
-private:
-
-    CImg<unsigned char> mapImage; 
-    CImgDisplay display;        
-
 public:
-    MapDisplay();
-    void displayMap();
-    void drawRoute(const DoublyLinkedList& route);
-    void updateDisplay();
+    MapDisplay(const char* imagePath);
+    void displayMap(sf::RenderWindow& window);
+
+private:
+    sf::Texture mapTexture;
+    sf::Sprite mapSprite;
 };
 
-#endif 
+

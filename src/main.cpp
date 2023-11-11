@@ -1,10 +1,9 @@
-#include "../include/MapDisplay.h"
+#include "../include/ApplicationManager.h"
+
 
 int main() {
-
-	MapDisplay mapDisplay; 
-	mapDisplay.displayMap();
-
-	return 0;
-	
+    ApplicationManager appManager("./resources/Map.jpg");
+    appManager.run();
+    return 0;
 }
+

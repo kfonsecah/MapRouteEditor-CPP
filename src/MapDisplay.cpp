@@ -1,32 +1,15 @@
 #include "../include/MapDisplay.h"
-#include "../include/DoubleLinkedList.h"
 
-MapDisplay::MapDisplay()
-    : display(1100,820, "Map Display") {
-    mapImage.load(MAP_IMAGE_PATH);
-
-    if (mapImage.depth() == 16) {
-        mapImage.normalize(0, 255);
+MapDisplay::MapDisplay(const char* imagePath) : mapTexture(), mapSprite() {
+    if (!mapTexture.loadFromFile(imagePath)) {
     }
-    displayMap(); 
+    mapSprite.setTexture(mapTexture);
+
+    float scale = std::min(1100.0f / mapSprite.getLocalBounds().width, 820.0f / mapSprite.getLocalBounds().height);
+    mapSprite.setScale(scale, scale);
 }
 
-void MapDisplay::displayMap() {
-
-    display.display(mapImage);
-
-    while (!display.is_closed() && !display.is_keyESC()) {
-        display.wait();
-        display.display(mapImage);
-    }
-}
-
-
-void MapDisplay::drawRoute(const DoublyLinkedList& route) {
-
-}
-
-void MapDisplay::updateDisplay() {
-    display.display(mapImage);
+void MapDisplay::displayMap(sf::RenderWindow& window) {
+    window.draw(mapSprite);
 }
 
