@@ -1,5 +1,4 @@
-#ifndef NODE_H
-#define NODE_H
+#pragma once
 
 class Node {
 public:
@@ -10,4 +9,4 @@ public:
     Node(int x, int y); 
 };
 
-#endif 
+

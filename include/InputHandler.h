@@ -12,7 +12,7 @@ public:
 private:
     bool mouseClicked;
     sf::Vector2i mousePosition;
-    sf::Clock clickClock; 
+    sf::Clock clickClock;
     const sf::Time clickThreshold = sf::milliseconds(200);
 };
 

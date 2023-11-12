@@ -1,9 +1,9 @@
 #include "../include/ApplicationManager.h"
 
-ApplicationManager::ApplicationManager(const char* imagePath) :
-    mapDisplay(imagePath),
-    window(sf::VideoMode(1100, 820), "Map Display") {
 
+
+ApplicationManager::ApplicationManager(const char* imagePath)
+    : mapDisplay(imagePath), window(sf::VideoMode(1100, 820), "Map Display") {
 }
 
 void ApplicationManager::run() {
@@ -23,9 +23,11 @@ void ApplicationManager::run() {
 
         window.clear();
         mapDisplay.displayMap(window);
+        mapDisplay.displayButtons(window);
         window.display();
     }
 }
+
 
 
 

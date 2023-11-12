@@ -2,7 +2,6 @@
 
 #include "MapDisplay.h"
 #include "InputHandler.h"
-#include <iostream>
 #include <SFML/Graphics.hpp>
 
 class ApplicationManager {
@@ -15,6 +14,3 @@ private:
     InputHandler inputHandler;
     sf::RenderWindow window;
 };
-
-
-

@@ -1,12 +1,8 @@
 #include "../include/InputHandler.h"
 
-#include "../include/InputHandler.h"
+InputHandler::InputHandler() : mouseClicked(false), clickClock() {}
 
-InputHandler::InputHandler() : mouseClicked(false), clickClock() {
-
-}
-
-void InputHandler::handleInput (const sf::Event& event, sf::RenderWindow& window) {
+void InputHandler::handleInput(const sf::Event& event, sf::RenderWindow& window) {
     if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
         if (clickClock.getElapsedTime() >= clickThreshold) {
             mouseClicked = true;
@@ -27,3 +23,7 @@ bool InputHandler::isMouseClicked() {
 sf::Vector2i InputHandler::getMousePosition() const {
     return mousePosition;
 }
+
+
+
+

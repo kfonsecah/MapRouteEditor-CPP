@@ -6,4 +6,3 @@ int main() {
     appManager.run();
     return 0;
 }
-
