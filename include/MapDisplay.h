@@ -11,6 +11,9 @@ public:
     void configureButtonSprites();
     void displayButtons(sf::RenderWindow& window);
 
+    std::string getClickedButton(sf::Vector2i mousePosition);
+
+
 private:
     sf::Texture mapTexture;
     sf::Sprite mapSprite;

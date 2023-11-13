@@ -26,4 +26,3 @@ sf::Vector2i InputHandler::getMousePosition() const {
 
 
 
-

@@ -119,3 +119,12 @@ void MapDisplay::displayMap(sf::RenderWindow& window) {
 	window.draw(mapSprite);
 }
 
+std::string MapDisplay::getClickedButton(sf::Vector2i mousePosition) {
+	if (spriteAdd.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePosition))) {
+		return "AddRoute";
+	}
+	else if (spriteDelete.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePosition))) {
+		return "DeleteRoute";
+	}
+	return "";
+}
