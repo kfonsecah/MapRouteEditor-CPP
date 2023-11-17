@@ -117,6 +117,7 @@ void MapDisplay::displayButtons(sf::RenderWindow& window) {
 
 void MapDisplay::displayMap(sf::RenderWindow& window) {
 	window.draw(mapSprite);
+	currentRoute.draw(window);
 }
 
 std::string MapDisplay::getClickedButton(sf::Vector2i mousePosition) {
@@ -127,4 +128,8 @@ std::string MapDisplay::getClickedButton(sf::Vector2i mousePosition) {
 		return "DeleteRoute";
 	}
 	return "";
+}
+
+Route& MapDisplay::getCurrentRoute() {
+	return currentRoute;
 }

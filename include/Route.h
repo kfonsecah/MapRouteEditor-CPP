@@ -1,16 +1,32 @@
-// Route.h
 #pragma once
-#include "DoubleLinkedList.h"
+
+#include <SFML/Graphics.hpp>
+
+#include "Node.h"
+
+using namespace sf; 
 
 class Route {
-public:
-    Route(const std::string& name);
-    const std::string& getName() const;
-    DoubleLinkedList& getNodesList();
 
 private:
-    std::string name;
-    DoubleLinkedList nodesList;
+
+    Node* head;
+    Node* tail;
+    Color color;
+
+public:
+
+    Route(); Route(Node* head, Node* tail);
+
+    void set_start_node(Node* head); Node* get_start_node();
+
+    void set_end_node(Node* tail); Node* get_end_node();
+
+    void add_node(Node* node);
+
+    void draw(RenderWindow& window);
+
+    void delete_node(Node* node);
+
+    void change_color(Color color);
 };
-
-
