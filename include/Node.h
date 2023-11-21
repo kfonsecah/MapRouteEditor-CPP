@@ -12,6 +12,7 @@ private:
 public:
 
     Node(int x, int y);
+    Node::Node();
     int get_x(); int get_y();
 
     Node* get_next();

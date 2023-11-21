@@ -9,7 +9,6 @@ void InputHandler::handleInput(const sf::Event& event, sf::RenderWindow& window)
             mousePosition = sf::Mouse::getPosition(window);
             clickClock.restart();
         }
-
     }
 }
 
@@ -26,11 +25,12 @@ sf::Vector2i InputHandler::getMousePosition() const {
 }
 
 void InputHandler::handleAddRoute(sf::RenderWindow& window, MapDisplay& mapDisplay) {
-
     sf::Vector2i mousePosition = getMousePosition();
     Node* newNode = new Node(mousePosition.x, mousePosition.y);
-    mapDisplay.getCurrentRoute().add_node(newNode);
 
+    mapDisplay.getCurrentRoute().add_node(newNode, mapDisplay.getSelectedRoute());
 }
+
+
 
 

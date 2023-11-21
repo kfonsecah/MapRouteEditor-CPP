@@ -14,6 +14,11 @@ private:
     Node* tail;
     Color color;
 
+    bool is_drawable;
+
+    int route_id;
+    int selected_route;
+
 public:
 
     Route(); Route(Node* head, Node* tail);
@@ -22,11 +27,15 @@ public:
 
     void set_end_node(Node* tail); Node* get_end_node();
 
-    void add_node(Node* node);
+    void add_node(Node* node, int selectedRoute);
 
     void draw(RenderWindow& window);
 
     void delete_node(Node* node);
 
-    void change_color(Color color);
+    void changeRouteColor(Color color);
+
+    void show_hide();
+
+    Color get_color();
 };

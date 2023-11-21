@@ -9,16 +9,20 @@
 #include <SFML/Audio.hpp>
 
 class ApplicationManager {
-public: ApplicationManager(const char* imagePath);
+public: 
+	 ApplicationManager(const char* imagePath);
 	  void handleButtonClick(const std::string& buttonName);
 	  void run();
 	  void playMenuSound();
 	  void selectMenuSound();
 	  void clickMenuSound();
+	  Color getColorFromButton(const std::string& buttonName);
 
 	  bool isAddingRoute;
 
-private: MapDisplay mapDisplay;
+private: 
+
+	   MapDisplay mapDisplay;
 	   InputHandler inputHandler;
 	   sf::RenderWindow window;
 

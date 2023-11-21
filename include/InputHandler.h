@@ -17,6 +17,7 @@ public: InputHandler();
 
 	  void handleAddRoute(sf::RenderWindow& window, MapDisplay& mapDisplay);
 
+
 private: bool mouseClicked;
 	   sf::Vector2i mousePosition;
 	   sf::Clock clickClock;
