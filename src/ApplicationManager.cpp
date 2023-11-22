@@ -19,8 +19,10 @@ ApplicationManager::ApplicationManager(const char* imagePath) : mapDisplay(image
 void ApplicationManager::run() {
     playMenuSound();
     while (window.isOpen()) {
+        
         sf::Event event;
         while (window.pollEvent(event)) {
+            
             if (event.type == sf::Event::Closed) {
                 window.close();
             }

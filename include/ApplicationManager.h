@@ -16,6 +16,8 @@ public:
     void playMenuSound();
     void selectMenuSound();
     void clickMenuSound();
+
+
     sf::Color getColorFromButton(const std::string& buttonName);
 
     MapDisplay mapDisplay; // Instance of MapDisplay
@@ -26,6 +28,8 @@ private:
     // Private members
     InputHandler inputHandler;
     sf::RenderWindow window;
+    sf::RenderWindow window2;
+
 
     sf::SoundBuffer menuSoundBuffer;
     sf::Sound menuSound;
