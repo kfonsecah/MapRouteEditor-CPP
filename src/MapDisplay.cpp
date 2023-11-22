@@ -1,6 +1,9 @@
 #include "../include/MapDisplay.h"
 
-MapDisplay::MapDisplay(const char* imagePath) : mapTexture(), mapSprite(), selected_route(-1) {
+
+using namespace std;
+
+MapDisplay::MapDisplay(const char* imagePath) : mapTexture(), mapSprite(), selected_route(-1), editMode(false) {
     if (!mapTexture.loadFromFile(imagePath)) {
     }
     mapSprite.setTexture(mapTexture);
@@ -73,15 +76,7 @@ void MapDisplay::loadButtonTextures() {
 	} catch (std::runtime_error& e) {
 		std::cout << e.what() << std::endl;
 	}
-	/*try {
-		if (!textureAdd.loadFromFile("./resources/cross.g")) {
-			throw std::runtime_error("Failed to load cross texture");
-		}
-	}
-	catch (std::runtime_error& e) {
-		std::cout << e.what() << std::endl;
-	}
-	*/
+
 }
 
 void MapDisplay::configureButtonSprites() {
@@ -133,9 +128,10 @@ void MapDisplay::displayButtons(sf::RenderWindow& window) {
 
 void MapDisplay::displayMap(sf::RenderWindow& window) {
 	// display each <route> by calling .draw on route
+
 	window.draw(mapSprite);
 	currentRoute.draw(window);
-
+	drawAllRoutes(window);
 	
 }
 
@@ -147,7 +143,7 @@ std::string MapDisplay::getClickedButton(sf::Vector2i mousePosition) {
 		return "DeleteRoute";
 	}
 	else if (spriteEdit.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePosition))) {
-		return "EditRoute";
+		return "Edit";
 	}
 	else if (spriteSave.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePosition))) {
 		return "Save";
@@ -183,7 +179,7 @@ void MapDisplay::addRoute() {
 		Route newRoute;
 		routes.push_back(newRoute);
 
-		
+
 		selected_route = routes.size() - 1;
 	}
 	else {
@@ -195,8 +191,10 @@ void MapDisplay::addRoute() {
 }
 
 void MapDisplay::deleteRoute() {
-	routes.erase(routes.begin() - selected_route);
-	selected_route = -1;
+	routes.erase(routes.begin() + selected_route);
+	selected_route = selected_route - 1;
+
+	std::cout<< "Selected Route: " << selected_route << std::endl;
 }
 
 Route& MapDisplay::getCurrentRoute() {
@@ -207,8 +205,76 @@ int MapDisplay::getSelectedRoute() const {
 	return selected_route;
 }
 
+void MapDisplay::showHideRoute() {
+	if (selected_route != -1) {
+		routes[selected_route].show_hide();
+	}
+	else {
+		std::cout << "No route selected" << std::endl;
+	}
+
+}
+
 void MapDisplay::drawAllRoutes(sf::RenderWindow& window) {
 	for (int i = 0; i < routes.size(); i++) {
 		routes[i].draw(window);
 	}
+}
+
+void MapDisplay::save_routes() {
+	ofstream file("data/routes.txt");
+	if (!file.is_open()) {
+		cerr << "Error opening file for writing." << endl;
+		return;
+	}
+
+	for (int i = 0; i < routes.size(); ++i) {
+		file << "Color: " << routes[i].get_color().toInteger() << endl;
+
+		Node* current = routes[i].get_start_node();
+		while (current != nullptr) {
+			file << "Node: " << current->get_x() << " " << current->get_y() << endl;
+			current = current->get_next();
+		}
+
+		file << endl;
+	}
+
+	file.close();
+}
+
+void MapDisplay::load_routes() {
+
+	ifstream file("data/routes.txt");
+	if (!file.is_open()) {
+		cerr << "MEGA-ERROR: EL ARCHIVO ESPECIFICADO EXPLOTO O MERAMENTE NO EXISTE" << endl;
+		return;
+	}
+
+	string line;
+	Route currentRoute;
+	Color currentColor;
+
+	while (getline(file, line)) {
+		if (line.find("Color:") != string::npos) {
+			currentColor = Color(stoul(line.substr(line.find(" ") + 1)));
+		}
+		else if (line.find("Node:") != string::npos) {
+			size_t spacePos = line.find(" ");
+			int x = stoi(line.substr(spacePos + 1, line.find(" ", spacePos + 1)));
+			int y = stoi(line.substr(line.find(" ", spacePos + 1) + 1));
+			currentRoute.add_node(new Node(x, y), selected_route);
+		}
+		else if (line.empty()) {
+
+			currentRoute.changeRouteColor(currentColor);
+			routes.push_back(currentRoute);
+
+			currentRoute = Route(); // RESETS THE ROUTE
+		}
+	}
+
+	currentRoute.changeRouteColor(currentColor);
+	routes.push_back(currentRoute);
+
 }

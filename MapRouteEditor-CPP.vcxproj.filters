@@ -24,9 +24,6 @@
     <ClCompile Include="src\Route.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\DoubleLinkedList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Node.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -34,12 +31,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\InputHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ColorPalette.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RouteManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\ApplicationManager.cpp">
@@ -50,16 +41,7 @@
     <ClInclude Include="include\MapDisplay.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\RouteManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\DoubleLinkedList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Node.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ColorPalette.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\FileManger.h">

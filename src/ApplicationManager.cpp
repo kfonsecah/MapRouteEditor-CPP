@@ -1,4 +1,5 @@
 #include "../include/ApplicationManager.h"
+using namespace std;
 
 
 ApplicationManager::ApplicationManager(const char* imagePath) : mapDisplay(imagePath), window(sf::VideoMode(1100, 820), "Map Display") {
@@ -41,7 +42,13 @@ void ApplicationManager::run() {
                 std::cout << "Mouse clicked at: " << inputHandler.getMousePosition().x << ", " << inputHandler.getMousePosition().y << std::endl;
                 clickMenuSound();
                 if (inputHandler.getMousePosition().x < 826) {
-                    inputHandler.handleAddRoute(window, mapDisplay);
+                    if(mapDisplay.editMode){ 
+                     std::cout<< "nodo poof" << std::endl;
+                     inputHandler.handleDeleteNode(window, mapDisplay);
+                    }
+                    else {
+                        inputHandler.handleAddNode(window, mapDisplay);
+                    }
                 }
             }
 
@@ -81,64 +88,36 @@ void ApplicationManager::handleButtonClick(const std::string& buttonName) {
         mapDisplay.deleteRoute();
     }
     else if (buttonName == "Rojo" || buttonName == "Azul" || buttonName == "Verde") {
-        mapDisplay.getCurrentRoute().changeRouteColor(getColorFromButton(buttonName));
+        mapDisplay.routes[mapDisplay.getSelectedRoute()].changeRouteColor(getColorFromButton(buttonName));
         std::cout << "Ruta " << buttonName << "." << std::endl;
     }
 
-	else if (buttonName == "Save") {
-
-		std::cout << "Ruta Guardada." << std::endl;
-
-	}
 	else if (buttonName == "ShowHide") {
 
 		std::cout << "Ruta Mostrada/Oculta." << std::endl;
 
 	}
-	else if (buttonName == "Upload") {
-
-		std::cout << "Ruta Subida." << std::endl;
-
-	}
 	else if (buttonName == "Edit") {
 
-		std::cout << "Ruta Editada." << std::endl;
-
-	}
-
-	else if (buttonName == "Azul") {
-
-		std::cout << "Ruta Azul." << std::endl;
-
-	}
-	else if (buttonName == "Rojo") {
-
-		std::cout << "Ruta Roja." << std::endl;
-
+		std::cout << "Modo editar activado." << std::endl;
+        mapDisplay.editMode = !mapDisplay.editMode; // swap mode on/off
 	}
 	else if (buttonName == "Save") {
 
-		std::cout << "Ruta Guardada." << std::endl;
+        mapDisplay.save_routes();
+		std::cout << "Ruta Guardadao." << std::endl;
 
 	}
-	else if (buttonName == "ShowHide") {
 
-		std::cout << "Ruta Mostrada/Oculta." << std::endl;
-
-	}
 	else if (buttonName == "Upload") {
 
-		std::cout << "Ruta Subida." << std::endl;
+        mapDisplay.load_routes();
+		std::cout << "Ruta Cargada." << std::endl;
 
 	}
-	else if (buttonName == "Edit") {
+    else if (buttonName == "Edit") {
 
-		std::cout << "Ruta Editada." << std::endl;
-
-	}
-	else if (buttonName == "Azul") {
-
-        std::cout << "Ruta Azul." << std::endl;
+        std::cout << "Ruta Editada." << std::endl;
 
     }
 }

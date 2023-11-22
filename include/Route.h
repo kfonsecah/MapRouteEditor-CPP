@@ -17,7 +17,7 @@ private:
     bool is_drawable;
 
     int route_id;
-    int selected_route;
+  
 
 public:
 

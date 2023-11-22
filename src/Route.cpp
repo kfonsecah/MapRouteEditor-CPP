@@ -43,6 +43,49 @@ void Route::add_node(Node* node, int route_id) {
 		tail = node;
 	}
 }
+// deletes a node if the click is within 5 pixels of the node
+void Route::delete_node(Node* node) {
+
+	// if there are no nodes to delete
+	if (head == nullptr) {
+		std::cout << "No nodes to delete" << std::endl;
+		return;
+	}
+	
+	// if there is at least one node
+	Node* current = head;
+	while (current != nullptr)
+	{
+		// if the click is within 5 pixels of the node
+		if (node->get_x() >= current->get_x() - 10 && node->get_x() <= current->get_x() + 10 && node->get_y() >= current->get_y() - 10 && node->get_y() <= current->get_y() + 10) {
+			std::cout << "Node deleted: " << current->get_x() << " " << current->get_y() << std::endl;
+			// if the node is the only node
+			if (current == head && current == tail) {
+				head = nullptr;
+				tail = nullptr;
+			}
+			// if the node is the head
+			else if (current == head) {
+				head = head->get_next();
+				head->set_prev(nullptr);
+			}
+			// if the node is the tail
+			else if (current == tail) {
+				tail = tail->get_prev();
+				tail->set_next(nullptr);
+			}
+			// if the node is in the middle
+			else {
+				current->get_prev()->set_next(current->get_next());
+				current->get_next()->set_prev(current->get_prev());
+			}
+			//delete current;
+			return;
+		}
+		current = current->get_next();
+	}
+
+}
 
 
 void Route::draw(RenderWindow& window) {
@@ -52,16 +95,12 @@ void Route::draw(RenderWindow& window) {
 	Node* current = head;
 	while (current != nullptr) {
 
-		// DRAWING THE NODE ITSELF WITH A BLACK BORDER
+
 		CircleShape circle(10);
 		circle.setFillColor(color);
-		circle.setPosition(current->get_x() - 7, current->get_y() - 7);
+		circle.setPosition(current->get_x() - 10, current->get_y() - 10);
 
-		CircleShape border(10);
-		border.setFillColor(Color::Black);
-		border.setPosition(current->get_x() - 7, current->get_y() - 7);
 
-		// DRAWING THE LINE BETWEEN NODES
 		if (current->get_next() != nullptr) {
 			Vertex line[] =
 			{
@@ -69,14 +108,22 @@ void Route::draw(RenderWindow& window) {
 				Vertex(Vector2f(current->get_next()->get_x(), current->get_next()->get_y()))
 			};
 			window.draw(line, 2, Lines);
+
 		}
-		window.draw(border);
+		
 		window.draw(circle);
 		current = current->get_next();
 	}
+}
+
+void Route::show_hide() {
+	is_drawable = !is_drawable;
 }
 
 void Route::changeRouteColor(Color color) {
 	this->color = color;
 }
 
+Color Route::get_color() {
+	return color;
+}

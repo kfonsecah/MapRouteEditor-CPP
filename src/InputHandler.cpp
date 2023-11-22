@@ -24,11 +24,28 @@ sf::Vector2i InputHandler::getMousePosition() const {
     return mousePosition;
 }
 
-void InputHandler::handleAddRoute(sf::RenderWindow& window, MapDisplay& mapDisplay) {
+void InputHandler::handleAddNode(sf::RenderWindow& window, MapDisplay& mapDisplay) {
     sf::Vector2i mousePosition = getMousePosition();
     Node* newNode = new Node(mousePosition.x, mousePosition.y);
+    if (mapDisplay.getSelectedRoute() == -1) {
+		std::cout << "No hay ruta seleccionada" << std::endl;
+		return;
+    } else{
+        mapDisplay.routes[mapDisplay.getSelectedRoute()].add_node(newNode, mapDisplay.getSelectedRoute());
+    }
+    
+}
 
-    mapDisplay.getCurrentRoute().add_node(newNode, mapDisplay.getSelectedRoute());
+void InputHandler::handleDeleteNode(sf::RenderWindow& window, MapDisplay& mapDisplay) {
+	sf::Vector2i mousePosition = getMousePosition();
+	Node* newNode = new Node(mousePosition.x, mousePosition.y);
+    if (mapDisplay.getSelectedRoute() == -1) {
+		std::cout << "No hay ruta seleccionada" << std::endl;
+		return;
+    }
+    else {
+		mapDisplay.routes[mapDisplay.getSelectedRoute()].delete_node(newNode);
+    }
 }
 
 

@@ -4,9 +4,13 @@
 
 #include <iostream>
 
+#include <fstream>
+
 #include "Route.h"
 
 #include <vector>
+
+
 
 class MapDisplay {
 public: MapDisplay(const char* imagePath);
@@ -24,11 +28,19 @@ public: MapDisplay(const char* imagePath);
 
 	  Route& getCurrentRoute();
 
-	  void change_selected_route(int route_id);
-
 	  int getSelectedRoute() const;
 
 	  void drawAllRoutes(sf::RenderWindow& window);
+
+	  std::vector<Route> routes;
+
+	  bool editMode;
+
+	  void showHideRoute();
+
+	  void save_routes();
+
+	  void load_routes();
 
 private: sf::Texture mapTexture;
 	   sf::Sprite mapSprite;
@@ -50,7 +62,7 @@ private: sf::Texture mapTexture;
 	   CircleShape blueCircle;
 	   CircleShape greenCircle;
 
-	   std::vector<Route> routes;
+	   
 	   Route currentRoute;
 };
 

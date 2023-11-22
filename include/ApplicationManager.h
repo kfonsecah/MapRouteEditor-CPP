@@ -18,11 +18,13 @@ public:
 	  void clickMenuSound();
 	  Color getColorFromButton(const std::string& buttonName);
 
+	  MapDisplay mapDisplay;
+
 	  bool isAddingRoute;
 
 private: 
 
-	   MapDisplay mapDisplay;
+	   
 	   InputHandler inputHandler;
 	   sf::RenderWindow window;
 
