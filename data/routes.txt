@@ -1,1 +1,58 @@
+Color: 4278190335
+Node: 450 71
+Node: 485 49
+Node: 584 77
+Node: 732 57
+Node: 787 80
+Node: 792 265
+
+Color: 16711935
+Node: 462 170
+Node: 739 100
+Node: 633 165
+Node: 740 244
+
+Color: 65535
+Node: 123 323
+Node: 117 434
+Node: 33 435
+Node: 61 269
+Node: 49 228
+Node: 49 85
+Node: 337 76
+
+Color: 65535
+Node: 566 598
+Node: 745 641
+Node: 640 722
+Node: 656 503
+
+Color: 4278190335
+Node: 109 692
+Node: 210 724
+Node: 66 776
+Node: 352 774
+Node: 343 539
+Node: 187 591
+
+Color: 4278190335
+Node: 755 561
+Node: 479 498
+Node: 488 380
+Node: 449 405
+Node: 346 375
+
+Color: 16711935
+Node: 298 290
+Node: 397 327
+Node: 467 307
+Node: 517 373
+
+Color: 255
+Node: 26 604
+Node: 123 625
+Node: 51 669
+Node: 81 561
+Node: 319 424
+Node: 632 440
 

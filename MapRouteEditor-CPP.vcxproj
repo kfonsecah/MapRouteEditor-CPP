@@ -125,7 +125,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\ApplicationManager.cpp" />
-    <ClCompile Include="src\FileManger.cpp" />
     <ClCompile Include="src\InputHandler.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MapDisplay.cpp" />
@@ -134,7 +133,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ApplicationManager.h" />
-    <ClInclude Include="include\FileManger.h" />
     <ClInclude Include="include\InputHandler.h" />
     <ClInclude Include="include\MapDisplay.h" />
     <ClInclude Include="include\Node.h" />

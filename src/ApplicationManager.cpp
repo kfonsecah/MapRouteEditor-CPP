@@ -1,9 +1,6 @@
 #include "../include/ApplicationManager.h"
-using namespace std;
-
 
 ApplicationManager::ApplicationManager(const char* imagePath) : mapDisplay(imagePath), window(sf::VideoMode(1100, 820), "Map Display") {
-
     if (!menuSoundBuffer.loadFromFile("./resources/gta-menu.wav")) {
         std::cerr << "Failed to load menu sound." << std::endl;
     }
@@ -33,25 +30,22 @@ void ApplicationManager::run() {
         if (inputHandler.isMouseClicked()) {
             std::string clickedButton = mapDisplay.getClickedButton(inputHandler.getMousePosition());
             if (!clickedButton.empty()) {
-
                 handleButtonClick(clickedButton);
                 selectMenuSound();
-
             }
             else if (clickedButton.empty()) {
                 std::cout << "Mouse clicked at: " << inputHandler.getMousePosition().x << ", " << inputHandler.getMousePosition().y << std::endl;
                 clickMenuSound();
                 if (inputHandler.getMousePosition().x < 826) {
-                    if(mapDisplay.editMode){ 
-                     std::cout<< "nodo poof" << std::endl;
-                     inputHandler.handleDeleteNode(window, mapDisplay);
+                    if (mapDisplay.editMode) {
+                        std::cout << "nodo poof" << std::endl;
+                        inputHandler.handleDeleteNode(window, mapDisplay);
                     }
                     else {
                         inputHandler.handleAddNode(window, mapDisplay);
                     }
                 }
             }
-
         }
 
         window.clear();
@@ -69,21 +63,18 @@ Color ApplicationManager::getColorFromButton(const std::string& buttonName) {
         return Color::Blue;
     }
     else if (buttonName == "Verde") {
-		return Color::Green;
-	}
-  
+        return Color::Green;
+    }
+
     return Color::White;
 }
 
 void ApplicationManager::handleButtonClick(const std::string& buttonName) {
     if (buttonName == "AddRoute") {
-
         std::cout << "Ruta Agregada" << std::endl;
         mapDisplay.addRoute();
-        
     }
     else if (buttonName == "DeleteRoute") {
-
         std::cout << "Ruta Eliminada." << std::endl;
         mapDisplay.deleteRoute();
     }
@@ -91,48 +82,34 @@ void ApplicationManager::handleButtonClick(const std::string& buttonName) {
         mapDisplay.routes[mapDisplay.getSelectedRoute()].changeRouteColor(getColorFromButton(buttonName));
         std::cout << "Ruta " << buttonName << "." << std::endl;
     }
-
-	else if (buttonName == "ShowHide") {
-
-		std::cout << "Ruta Mostrada/Oculta." << std::endl;
-
-	}
-	else if (buttonName == "Edit") {
-
-		std::cout << "Modo editar activado." << std::endl;
-        mapDisplay.editMode = !mapDisplay.editMode; // swap mode on/off
-	}
-	else if (buttonName == "Save") {
-
-        mapDisplay.save_routes();
-		std::cout << "Ruta Guardadao." << std::endl;
-
-	}
-
-	else if (buttonName == "Upload") {
-
-        mapDisplay.load_routes();
-		std::cout << "Ruta Cargada." << std::endl;
-
-	}
+    else if (buttonName == "ShowHide") {
+        std::cout << "Ruta Mostrada/Oculta." << std::endl;
+    }
     else if (buttonName == "Edit") {
-
+        std::cout << "Modo editar activado." << std::endl;
+        mapDisplay.editMode = !mapDisplay.editMode; // swap mode on/off
+    }
+    else if (buttonName == "Save") {
+        mapDisplay.save_routes();
+        std::cout << "Ruta Guardadao." << std::endl;
+    }
+    else if (buttonName == "Upload") {
+        mapDisplay.load_routes();
+        std::cout << "Ruta Cargada." << std::endl;
+    }
+    else if (buttonName == "Edit") {
         std::cout << "Ruta Editada." << std::endl;
-
     }
 }
 
 void ApplicationManager::playMenuSound() {
-
     menuSound.play();
 }
 
 void ApplicationManager::selectMenuSound() {
-
     selectSound.play();
 }
 
 void ApplicationManager::clickMenuSound() {
-
     clickSound.play();
 }
