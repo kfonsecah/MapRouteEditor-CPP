@@ -17,7 +17,6 @@ public:
     void selectMenuSound();
     void clickMenuSound();
 
-
     sf::Color getColorFromButton(const std::string& buttonName);
 
     MapDisplay mapDisplay; // Instance of MapDisplay
